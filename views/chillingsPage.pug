@@ -14,25 +14,47 @@ html
 			button(id="attentbtn" type="submit" class="btn btn-dark") Attend Chilling
 
 		div(class="spacer")
-
-		form(method="POST" action="/chillingsPage" enctype="multipart/form-data" id="uploadEventPic")
-			input(type="hidden" value=`${id}`, name="chillId")
-			div(class="row form-group")
-			label(id="uploadtext") Upload a picture for the chilling
+		h1(class="chillpage--h1") Let's do this #{user}
+		if host === userid 
+			form(method="POST" action="/chillingsPage" enctype="multipart/form-data" id="uploadEventPic")
+				input(type="hidden" value=`${id}`, name="chillId")
+				div(class="row form-group")
+				label(id="uploadtext") Upload a picture for the chilling
+					br
+					input(id="pic" type="file" name="chillPictures")
 				br
-				input(id="pic" type="file" name="chillPictures")
-			br
-			button(id="eventbtn" type="submit" class="btn btn-light") Add Event Picture
+				button(id="eventbtn" type="submit" class="btn btn-light") Add Event Picture
 
-		div(class="spacer")
+			div(class="spacer")
 
-		div(class="container" id="eventPageLs")
-			div(class="row")
-			h1 Let's do this #{user}
-			h1 #{title}
-			h2 #{location} #{time}
-			h3 #{date}
-			p #{information}
+			div(class="container" id="eventPageLs")
+				div(class="row")
+				h1 #{title}
+				h2 Where: 
+				h3 #{location} 
+				h2 When: 
+				h3 #{date}
+				h2 Time: 
+				h3 #{time}
+				h2 What: 
+				h4 #{information}
+				div(class="spacer")
+
+		else
+			div(class="spacer")
+
+			div(class="container" id="eventPageLs")
+				div(class="row")
+				h1 #{title}
+				h2 Where: 
+				h3 #{location} 
+				h2 When: 
+				h3 #{date}
+				h2 Time: 
+				h3 #{time}
+				h2 What: 
+				h4 #{information}
+				div(class="spacer")
 	style
 		include ../public/custom/chillingsPage.css
 	script.

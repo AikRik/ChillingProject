@@ -15,16 +15,13 @@ module.exports = (app, client) => {
 
         // query to insert row with new event into the db
         var createChill = {
-            text: `INSERT INTO chillings(title, location, date, information, time, host_id ) 
-                          VALUES('${title}','${location}','${date}','${information}','${time}','${host_id}') RETURNING *;`
+            text: `INSERT INTO chillings(title, location, date, information, time, host_id ) VALUES('${title}','${location}','${date}','${information}','${time}','${host_id}') RETURNING *;`
         }
-        client.query(createChill,(error,res1)=>{
-            if(error){throw error}
+        client.query(createChill, (error, res1) => {
+            if (error) { throw error }
             var user_id = req.session.user.id
             //query all events that user has attended from junction table
-            client.query(`SELECT ChillUsers.user_id, chillings.id, chillings.title, chillings.location, chillings.date, chillings.information, chillings.time, chillings.host_id , chillings.images 
-                FROM ChillUsers INNER JOIN chillings ON ChillUsers.chillings_id = chillings.id 
-                WHERE ChillUsers.user_id = ${user_id} ORDER by ID DESC;`, (err, result) => {
+            client.query(`SELECT ChillUsers.user_id, chillings.id, chillings.title, chillings.location, chillings.date, chillings.information, chillings.time, chillings.host_id , chillings.images FROM ChillUsers INNER JOIN chillings ON ChillUsers.chillings_id = chillings.id WHERE ChillUsers.user_id = ${user_id} ORDER by ID DESC;`, (err, result) => {
 
                 if (err) { throw err }
 
@@ -46,8 +43,6 @@ module.exports = (app, client) => {
 
                         hostChillings.push(eventResult)
                     }
-
-                    console.log("Host", hostChillings)
                     res.render("profile", { allChillings: allChillings, hostChillings: hostChillings, user: req.session.user.username })
                 })
             })

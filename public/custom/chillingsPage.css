@@ -14,6 +14,9 @@ body {
     max-height: 300px;
     opacity: 0.9;
 }
+.chillpage--h1{
+    text-align: center;
+}
 
 #attendForm {
     position: absolute;
@@ -23,19 +26,28 @@ body {
 }
 
 #eventPageLs {
+    background: url(public/images/formBackground.jpeg);
+    text-align: left;
+}
+#eventPageLs h1{
     text-align: center;
 }
-
+#eventPageLs h3,h4{
+    color:#b74646;
+}
 #uploadtext {
     display: block;
     text-align: center;
 }
 
 #pic {
-    display: inline-block;
     left: 25%;
     right: 25%;
     position: absolute;
+    color: black;
+    background-color: #dddddd;
+    display: inline-block;
+    width: 200px;
 }
 
 #eventbtn {
