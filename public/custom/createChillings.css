@@ -1,0 +1,32 @@
+body {
+    background: url(public/images/formBackground.jpeg);
+    color: #e2dbce;
+}
+
+#create--h1 {
+    text-align: center;
+}
+
+#createChill {
+    width: 300px;
+    opacity: 1;
+    margin: 0 auto;
+    text-align: center;
+    z-index: 1;
+}
+
+#createChill label {
+    font-size: 20px;
+}
+
+.createInput {
+    display: block;
+    width: 200px;
+    text-align: center;
+    font-size: 15px;
+    color: #757575;
+}
+
+#form--styling {
+    background: z-index: -1;
+}

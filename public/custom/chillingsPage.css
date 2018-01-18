@@ -1,0 +1,45 @@
+body {
+    background-color: #434B60;
+    color: #7E809C;
+    width: 375px;
+}
+
+.spacer {
+    height: 40px;
+    width: 100%;
+}
+
+#Chillpic {
+    width: 100%;
+    max-height: 300px;
+    opacity: 0.9;
+}
+
+#attendForm {
+    position: absolute;
+    width: 50%;
+    margin: 0 auto;
+    left: 35%;
+}
+
+#eventPageLs {
+    text-align: center;
+}
+
+#uploadtext {
+    display: block;
+    text-align: center;
+}
+
+#pic {
+    display: inline-block;
+    left: 25%;
+    right: 25%;
+    position: absolute;
+}
+
+#eventbtn {
+    display: block;
+    left: 32%;
+    position: absolute;
+}

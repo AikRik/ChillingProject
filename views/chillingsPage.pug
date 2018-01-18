@@ -1,0 +1,44 @@
+html
+	head
+		script(src="https://code.jquery.com/jquery-3.2.1.js" integrity="sha256-DZAnKJ/6XZ9si04Hgrsxu/8s717jcIzLy3oi35EouyE=" crossorigin="anonymous")
+		link(rel='stylesheet', href='https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css')
+		meta(name='viewport', content='width=device-width, initial-scale=1')
+	body
+		include navbar
+		img(id="Chillpic" src=picture)
+		
+		div(class="spacer")
+
+		form(method="POST" action="/attend" id="attendForm")
+			input(type="hidden" value=`${id}`, name="chillId")
+			button(id="attentbtn" type="submit" class="btn btn-dark") Attend Chilling
+
+		div(class="spacer")
+
+		form(method="POST" action="/chillingsPage" enctype="multipart/form-data" id="uploadEventPic")
+			input(type="hidden" value=`${id}`, name="chillId")
+			div(class="row form-group")
+			label(id="uploadtext") Upload a picture for the chilling
+				br
+				input(id="pic" type="file" name="chillPictures")
+			br
+			button(id="eventbtn" type="submit" class="btn btn-light") Add Event Picture
+
+		div(class="spacer")
+
+		div(class="container" id="eventPageLs")
+			div(class="row")
+			h1 Let's do this #{user}
+			h1 #{title}
+			h2 #{location} #{time}
+			h3 #{date}
+			p #{information}
+	style
+		include ../public/custom/chillingsPage.css
+	script.
+		$("form").submit(function(event){
+			if(document.getElementById("pic").files.length === 0) {
+				event.preventDefault()
+				alert("You have yet to select the picture!")
+				}
+		})

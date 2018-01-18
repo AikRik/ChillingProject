@@ -1,0 +1,87 @@
+html
+	head
+		meta(charset="UTF-8")
+		title Document
+		script(src="https://code.jquery.com/jquery-3.2.1.js" integrity="sha256-DZAnKJ/6XZ9si04Hgrsxu/8s717jcIzLy3oi35EouyE=" crossorigin="anonymous")
+		link(rel='stylesheet', href='https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css')
+		meta(name='viewport', content='width=device-width, initial-scale=1')
+	body
+		include navbar
+		div(class="main")
+			h1(id="profileH1") Whatsup #{user}! 
+			h3(id="profileH3") Your Personalized Week:
+			#bs-carousel.carousel.fade-carousel.slide(data-ride='carousel', data-interval='4000')
+				// Overlay
+				.overlay
+				// Indicators
+				ol.carousel-indicators
+					li.active(data-target='#bs-carousel', data-slide-to='0')
+					li(data-target='#bs-carousel', data-slide-to='1')
+					li(data-target='#bs-carousel', data-slide-to='2')
+				// Wrapper for slides
+				.carousel-inner
+					.item.slides.active
+						.slide-1
+						.hero
+							hgroup
+							
+								h3 Start Your Week!
+					.item.slides
+						.slide-2
+						.hero
+							hgroup
+								h1 Make It AWESOME!
+					.item.slides
+						.slide-3
+						.hero
+							hgroup
+								h3 Let's Go!
+				div.spacer
+				
+				a(href="createChillings" id="createChillLink") Let's Create A Chill!
+
+				h2(id="yourChill") Your Chillings:
+				div(class="container")
+					h2 Your Created Chillings
+					if !hostChillings 
+						div(class="row")
+							h3 Create your first Chilling:)
+					else
+						div(class="row")
+						each item in hostChillings
+
+								div(class="col-sm-3 col-sm-6-offset" id="profileChills")
+										h3 When: #{item.date}
+										h3 What: #{item.title}
+										h3 Where: #{item.location}
+										h3 Time: #{item.time}
+										p #{item.information}
+										p(hidden id="hiddenId" name="id") #{item.id}
+										a(href=`/chillingsPage?id=${item.id}`) Go to Chilling
+									
+				div(class="container")
+					h2 Chillings You're Attending
+					if !allChillings 
+						div(class="row")
+							h3 Attend your first Chilling:)
+					else
+						div(class="row")
+						each item in allChillings
+
+								div(class="col-sm-3 col-sm-6-offset" id="profileChills")
+										h3 When: #{item.date}
+										h3 What: #{item.title}
+										h3 Where: #{item.location}
+										h3 Time: #{item.time}
+										p #{item.information}
+										p(hidden id="hiddenId" name="id") #{item.id}
+										a(href=`/chillingsPage?id=${item.id}`) Go to Chilling
+									
+				div.spacer
+	style
+		include ../public/custom/profile.css
+
+
+
+
+

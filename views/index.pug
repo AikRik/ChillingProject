@@ -1,0 +1,35 @@
+html
+	head
+		script(src="https://code.jquery.com/jquery-3.2.1.js" integrity="sha256-DZAnKJ/6XZ9si04Hgrsxu/8s717jcIzLy3oi35EouyE=" crossorigin="anonymous")
+		link(rel='stylesheet', href='https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css')
+		meta(name='viewport', content='width=device-width, initial-scale=1')
+		title Document
+	if user 
+		body
+			include navbar
+			h1 Let's Chill! #{user}
+					h2 All Chillings:
+					each item in allChillings 
+						div(id="AllChillsLs")
+								h3 When:
+								|	#{item.date}
+								h3 What:
+								|	#{item.title}
+								h3 Where: 
+								|	#{item.location}
+								h3 Time: 
+								|	#{item.time}
+								p #{item.information}
+								br
+								a(id="eventLink" href=`/chillingsPage?id=${item.id}`) Go to Chilling
+	else if !user
+		body(background="../public/images/footy.jpeg")
+			include navbar
+			h1 Let's Chill! #{user}
+			div(id="fb-root")
+				div(class="fb-login-button" data-width="300px" data-max-rows="1" data-size="medium" data-button-type="continue_with" data-show-faces="false" data-auto-logout-link="true" data-use-continue-as="true")
+
+			div(id="indexlogin")
+				include login
+	style
+		include ../public/custom/index.css

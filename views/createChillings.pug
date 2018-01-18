@@ -1,0 +1,52 @@
+html
+	head
+		meta(charset="UTF-8")
+		title Document
+	body
+		include navbar
+		h1(id="create--h1") Let's create a Chillings!
+		br
+		br
+		div(id="form--styling")
+			form(id="createChill" method="POST" action="/createChillings")
+				label Chillings Title:
+					br
+					input(id="chillTitle" class="createInput" type="text" name="chillTitle" placeholder="Title")
+				br
+				label Chill Spot:
+					br
+					input(id="chillSpot" class="createInput" type="text" name="chillSpot" placeholder="Location")
+				br
+				label Chill Date:
+
+					input(id="chillDate" class="createInput" type="date" name="chillDate")
+				br
+				label Chill Time
+					br
+					input(id="chillTime" class="createInput" type="time" name="chillTime")
+				br
+				label Chillings Info:
+					br
+					input(id="chillInfo" class="createInput" type="text" name="chillInfo" placeholder="Extra Information")
+				br
+				button(type="submit" name="chillbtn" ) To the Chill!
+	script.
+		$(document).ready(function() {
+
+			// checking for empty string in input fields
+			$("form").submit(function(event) {
+				let title = $("#chillTitle").val()
+				let datum = $("#chillDate").val()
+				let time = $("#chillTime").val()	
+				let location = $("#chillSpot").val()
+		
+				console.log("The Picture", title, datum, time, location) 
+				
+				if(title === ""|| location === "" || time === "") {
+					event.preventDefault()
+					alert("You have yet to complete the form!")
+				}
+			}) 
+		})
+style
+	include ../public/custom/createChillings.css

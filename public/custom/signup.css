@@ -1,0 +1,34 @@
+body {
+    background: url(public/images/formBackground.jpeg);
+    color: #e2dbce;
+}
+
+#suh2 {
+    text-align: center;
+}
+
+#signUpForm {
+    text-align: center;
+    width: min-content;
+    margin: 0 auto;
+}
+
+.suInput {
+    text-align: center;
+    color: black;
+}
+
+#signUpForm label {
+    text-align: left;
+}
+
+#suSubmit {
+    background-color: white;
+    margin: 0 auto;
+    text-align: center;
+    color: #757575;
+}
+
+#error {
+    color: red;
+}

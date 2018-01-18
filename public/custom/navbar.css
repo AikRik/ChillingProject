@@ -1,0 +1,25 @@
+nav {
+    display: block;
+    background-color: #EFEEEA;
+    opacity: 0.5;
+    color: black;
+    width: 100%;
+    margin: 0 auto;
+}
+
+nav:hover {
+    opacity: 0.7;
+}
+
+.navbar.navbar-default {
+    z-index: 1;
+}
+
+#calendarDate {
+    float: right;
+    height: 50px;
+    padding: 15px 15px;
+    font-size: 18px;
+    line-height: 20px;
+    opacity: 0.6;
+}
