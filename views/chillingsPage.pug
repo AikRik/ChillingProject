@@ -36,7 +36,7 @@ html
 	style
 		include ../public/custom/chillingsPage.css
 	script.
-		$("form").submit(function(event){
+		$("#uploadEventPic").submit(function(event){
 			if(document.getElementById("pic").files.length === 0) {
 				event.preventDefault()
 				alert("You have yet to select the picture!")

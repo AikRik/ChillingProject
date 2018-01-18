@@ -26,6 +26,7 @@ module.exports = (app, client, bcrypt) => {
 
                 client.query(userCheck, (err, result) => {
                     if (result.rows != 0) {
+                        console.log("the row" , result)
                         res.render("signup", { error: "Username is not Available" })
                     } else {
                         client.query(insertNewUser, (err, result2) => {

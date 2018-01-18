@@ -2,12 +2,13 @@ body {
     background-color: #010806bf;
 }
 
-#profileH1 {
+.profileH1 {
     text-align: center;
     color: #337ab7;
 }
 
-#profileH3 {
+.profileH3, 
+.profileH2 {
     text-align: center;
 }
 
@@ -34,7 +35,7 @@ body {
     opacity: 0.9;
 }
 
-#yourChill {
+.yourChill {
     display: block;
     text-align: center;
 }
