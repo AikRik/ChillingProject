@@ -1,10 +1,12 @@
-module.exports = (app, client, moment) => {
+const moment = require("moment")
+
+module.exports = (app, client) => {
     app.get("/", (req, res) => {
         if (req.session.user) {
             //get all events from db
             client.query(`SELECT * FROM chillings ORDER by ID DESC`, (err, result) => {
 
-                if (err) { throw err }
+                if (err) throw err
 
                 var allChillings = []
 
@@ -13,7 +15,9 @@ module.exports = (app, client, moment) => {
 
                     allChillings.push(eventResult)
                 }
-                res.render("index", { user: req.session.user.username, allChillings: allChillings })
+                res.render("index", { 
+                    user: req.session.user.username, 
+                    allChillings: allChillings})
             })
         } else {
             res.render("index")

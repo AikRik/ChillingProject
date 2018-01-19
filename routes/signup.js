@@ -1,7 +1,5 @@
 module.exports = (app, client, bcrypt) => {
-    app.get("/signup", (req, res) => {
-        res.render("signup")
-    })
+    app.get("/signup", (req, res) => res.render("signup"))
 
     app.post("/signup", (req, res) => {
         var firstname = req.body.firstname
@@ -15,7 +13,7 @@ module.exports = (app, client, bcrypt) => {
             bcrypt.hash(password, salt, function(err, hash) {
 
                 // Store hash in the password DB.
-                if (err) console.log(err)
+                if (err) throw err
                 // The query goes here
                 const userCheck = {
                     text: `SELECT * FROM users WHERE username = '${username}' OR email = '${email}'`,
@@ -30,11 +28,9 @@ module.exports = (app, client, bcrypt) => {
                         res.render("signup", { error: "Username is not Available" })
                     } else {
                         client.query(insertNewUser, (err, result2) => {
-                            if (err) {
-                                throw err
-                            } else {
-                                res.render("index")
-                            }
+                            if (err) throw err
+                                
+                            else res.render("index")
                         })
                     }
                 })

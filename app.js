@@ -4,7 +4,6 @@ const bodyParser = require("body-parser")
 const bcrypt = require("bcrypt")
 const session = require("express-session")
 const pg = require("pg")
-const moment = require("moment")
 var multer  = require('multer')
 app.use("/public", express.static("public"))
 var upload = multer({ dest: 'public/images' })
@@ -33,7 +32,7 @@ app.use(session({
 
 app.set("view engine", "pug")
 
-require("./routes/index.js")(app, client, moment)
+require("./routes/index.js")(app, client)
 require("./routes/login.js")(app, client, bcrypt)
 require("./routes/signup.js")(app, client, bcrypt)
 require("./routes/navbar.js")(app)
@@ -44,6 +43,4 @@ require("./routes/chillingsPage.js")(app,client,upload)
 require("./routes/attend.js")(app,client)
 require("./routes/searchbar.js")(app,client)
 
-app.listen(3002, function(){
-	console.log("listening on 3002")
-})
+app.listen(3002)

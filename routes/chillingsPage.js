@@ -4,16 +4,17 @@ module.exports = (app, client, upload) => {
             var ChillId = req.query.id
             //query to get all event information where event id corresponds to the event id in the db
             client.query(`SELECT * FROM chillings WHERE id = '${ChillId}'`, (err, result) => {
-
-                var title = result.rows[0].title
-                var location = result.rows[0].location
-                var date = result.rows[0].date
-                var time = result.rows[0].time
-                var information = result.rows[0].information
-                var messageId = result.rows[0].id
-                var picture = result.rows[0].images
-                var host = result.rows[0].host_id
-                res.render("chillingsPage", { userid: req.session.user.id, user: req.session.user.username, title: title, location: location, date: date, information: information, time: time, id: messageId, picture: picture, host: host })
+                res.render("chillingsPage", { 
+                    userid: req.session.user.id, 
+                    user: req.session.user.username, 
+                    title: result.rows[0].title, 
+                    location: result.rows[0].location, 
+                    date: result.rows[0].date, 
+                    information: result.rows[0].information, 
+                    time: result.rows[0].time, 
+                    id: result.rows[0].id, 
+                    picture: result.rows[0].images, 
+                    host: result.rows[0].host_id })
             })
         } else {
             res.render("index")
@@ -31,19 +32,11 @@ module.exports = (app, client, upload) => {
 
         client.query(uploadPicture, (err, result) => {
 
-            if (err) console.log("Error", err);
+            if (err) throw err
 
             client.query(`SELECT * FROM chillings WHERE id = ${ChillId};`, (err, result2) => {
-                var title = result.rows[0].title
-                var location = result.rows[0].location
-                var date = result.rows[0].date
-                var time = result.rows[0].time
-                var information = result.rows[0].information
-                var messageId = result.rows[0].id
-                var picture = result.rows[0].images
-                var host = result.rows[0].host_id
 
-                if (err) { throw err }
+                if (err) throw err
 
                 var allChillings = []
 
@@ -52,7 +45,17 @@ module.exports = (app, client, upload) => {
 
                     allChillings.push(eventResult)
                 }
-                res.render("chillingsPage", { allChillings: allChillings, user: req.session.user.username, title: title, location: location, date: date, information: information, time: time, id: messageId, picture: picture, host: host })
+                res.render("chillingsPage", { 
+                    allChillings: allChillings, 
+                    user: req.session.user.username, 
+                    title: result.rows[0].title, 
+                    location: result.rows[0].location, 
+                    date: result.rows[0].date, 
+                    information: result.rows[0].information, 
+                    time: result.rows[0].time, 
+                    id: result.rows[0].id, 
+                    picture: result.rows[0].images,
+                    host: result.rows[0].host_id})
             })
         })
     })

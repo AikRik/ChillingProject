@@ -1,7 +1,5 @@
 module.exports = (app, client, bcrypt) => {
-    app.get("/login", (req, res) => {
-        res.render("login")
-    })
+    app.get("/login", (req, res) => res.render("login"))
 
     app.post("/login", (req, res) => {
 
@@ -19,9 +17,8 @@ module.exports = (app, client, bcrypt) => {
                 var hash = response.rows[0].password
                 //check the password
                 bcrypt.compare(password, hash, function(err, result) {
-                    if (err) {
-                        throw err
-                    } else if (response.rows[0].username === req.body.username && result === true) {
+                    if (err) throw err
+                    else if (response.rows[0].username === req.body.username && result === true) {
                         req.session.user = { id: response.rows[0].id, username: response.rows[0].username }
 
                         var user_id = req.session.user.id
@@ -30,7 +27,7 @@ module.exports = (app, client, bcrypt) => {
                                     FROM ChillUsers INNER JOIN chillings ON ChillUsers.chillings_id = chillings.id 
                                     WHERE ChillUsers.user_id = ${user_id} ORDER by ID DESC;`, (err, result) => {
 
-                            if (err) { throw err }
+                            if (err) throw err
 
                             var allChillings = []
 
@@ -41,7 +38,7 @@ module.exports = (app, client, bcrypt) => {
                             // query all events user has created
                             client.query(`SELECT * FROM chillings WHERE host_id = '${user_id}' ORDER by ID DESC;`, (err, result) => {
 
-                                if (err) { throw err }
+                                if (err) throw err
 
                                 var hostChillings = []
 
@@ -50,7 +47,10 @@ module.exports = (app, client, bcrypt) => {
 
                                     hostChillings.push(eventResult)
                                 }
-                                res.render("profile", { allChillings: allChillings, hostChillings: hostChillings, user: req.session.user.username })
+                                res.render("profile", { 
+                                    allChillings: allChillings, 
+                                    hostChillings: hostChillings, 
+                                    user: req.session.user.username})
                             })
                         })
                     } else {

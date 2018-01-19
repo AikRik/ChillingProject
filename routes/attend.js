@@ -1,10 +1,7 @@
 module.exports = (app, client) => {
     app.get("/attend", (req, res) => {
-        if (req.session.user) {
-            res.render("profile")
-        } else {
-            res.render("index")
-        }
+        if (req.session.user) res.render("profile")
+        else res.render("index")
     })
 
     app.post("/attend", (req, res) => {
@@ -17,25 +14,22 @@ module.exports = (app, client) => {
                 FROM ChillUsers INNER JOIN chillings ON ChillUsers.chillings_id = chillings.id 
                 WHERE ChillUsers.user_id = ${userId} ORDER by ID DESC;`, (err, result) => {
 
-                if (err) { throw err }
+                if (err) throw err 
 
                 var allChillings = []
 
                 for (var i = 0; i < result.rows.length; i++) {
-                    var eventResult = result.rows[i]
-                    allChillings.push(eventResult)
+                    allChillings.push(result.rows[i])
                 }
                 // query all events user has created
                 client.query(`SELECT * FROM chillings WHERE host_id = '${userId}' ORDER by ID DESC;`, (err, result) => {
 
-                    if (err) { throw err }
+                    if (err) throw err 
 
                     var hostChillings = []
 
                     for (var i = 0; i < result.rows.length; i++) {
-                        var eventResult = result.rows[i]
-
-                        hostChillings.push(eventResult)
+                        hostChillings.push(result.rows[i])
                     }
                     res.render("profile", { allChillings: allChillings, hostChillings: hostChillings, user: req.session.user.username })
                 })

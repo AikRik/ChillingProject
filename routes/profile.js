@@ -8,7 +8,7 @@ module.exports = (app, client) => {
                 FROM ChillUsers INNER JOIN chillings ON ChillUsers.chillings_id = chillings.id 
                 WHERE ChillUsers.user_id = ${user_id} ORDER by ID DESC;`, (err, result) => {
 
-                if (err) { throw err }
+                if (err) throw err
 
                 var allChillings = []
 
@@ -19,7 +19,7 @@ module.exports = (app, client) => {
                 // query all events user has created
                 client.query(`SELECT * FROM chillings WHERE host_id = '${user_id}' ORDER by ID DESC;`, (err, result) => {
 
-                    if (err) { throw err }
+                    if (err) throw err 
 
                     var hostChillings = []
 
@@ -28,11 +28,12 @@ module.exports = (app, client) => {
 
                         hostChillings.push(eventResult)
                     }
-                    res.render("profile", { allChillings: allChillings, hostChillings: hostChillings, user: req.session.user.username })
+                    res.render("profile", { 
+                        allChillings: allChillings, 
+                        hostChillings: hostChillings, 
+                        user: req.session.user.username })
                 })
             })
-        } else {
-            res.render("index")
-        }
+        } else res.render("index")
     })
 }
