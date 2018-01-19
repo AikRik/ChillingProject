@@ -13,7 +13,7 @@ module.exports = (app, client, upload) => {
                 var messageId = result.rows[0].id
                 var picture = result.rows[0].images
                 var host = result.rows[0].host_id
-                res.render("chillingsPage", { userid: req.session.user.id, user: req.session.user.username, title: title, location: location, date: date, information: information, time: time, id: messageId, picture: picture, host:host })
+                res.render("chillingsPage", { userid: req.session.user.id, user: req.session.user.username, title: title, location: location, date: date, information: information, time: time, id: messageId, picture: picture, host: host })
             })
         } else {
             res.render("index")
@@ -52,7 +52,7 @@ module.exports = (app, client, upload) => {
 
                     allChillings.push(eventResult)
                 }
-                res.render("chillingsPage", { allChillings: allChillings, user: req.session.user.username,title: title, location: location, date: date, information: information, time: time, id: messageId, picture: picture, host:host})
+                res.render("chillingsPage", { allChillings: allChillings, user: req.session.user.username, title: title, location: location, date: date, information: information, time: time, id: messageId, picture: picture, host: host })
             })
         })
     })

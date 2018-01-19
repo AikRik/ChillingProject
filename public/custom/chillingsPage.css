@@ -14,7 +14,8 @@ body {
     max-height: 300px;
     opacity: 0.9;
 }
-.chillpage--h1{
+
+.chillpage--h1 {
     text-align: center;
 }
 
@@ -29,12 +30,16 @@ body {
     background: url(public/images/formBackground.jpeg);
     text-align: left;
 }
-#eventPageLs h1{
+
+#eventPageLs h1 {
     text-align: center;
 }
-#eventPageLs h3,h4{
-    color:#b74646;
+
+#eventPageLs h3,
+h4 {
+    color: #b74646;
 }
+
 #uploadtext {
     display: block;
     text-align: center;

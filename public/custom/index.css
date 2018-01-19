@@ -43,3 +43,16 @@ h2 {
 .main {
     color: black
 }
+
+#searchbar {
+    text-align: center;
+    color: black;
+}
+
+#searchbar--label {
+    font-size: 25px;
+}
+
+#searchbar--input {
+    font-size: 15px;
+}

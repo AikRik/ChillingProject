@@ -42,6 +42,7 @@ require("./routes/profile.js")(app, client)
 require("./routes/createChillings.js")(app, client)
 require("./routes/chillingsPage.js")(app,client,upload)
 require("./routes/attend.js")(app,client)
+require("./routes/searchbar.js")(app,client)
 
 app.listen(3002, function(){
 	console.log("listening on 3002")
