@@ -43,4 +43,4 @@ require("./routes/chillingsPage.js")(app,client,upload)
 require("./routes/attend.js")(app,client)
 require("./routes/searchbar.js")(app,client)
 
-app.listen(3002)
+app.listen(process.env.host)
