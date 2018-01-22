@@ -4,6 +4,7 @@ const bodyParser = require("body-parser")
 const bcrypt = require("bcrypt")
 const session = require("express-session")
 const pg = require("pg")
+var moment = require('moment');
 var multer  = require('multer')
 app.use("/public", express.static("public"))
 var upload = multer({ dest: 'public/images' })
@@ -43,4 +44,4 @@ require("./routes/chillingsPage.js")(app,client,upload)
 require("./routes/attend.js")(app,client)
 require("./routes/searchbar.js")(app,client)
 
-app.listen(process.env.host)
+app.listen(3002)
